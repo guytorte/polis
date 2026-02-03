@@ -1,0 +1,8 @@
+```
+# Build artifacts
+assets/
+dist/
+build/
+*.js
+*.css
+```
