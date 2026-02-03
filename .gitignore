@@ -1,1 +1,15 @@
-Nothing should be ignored since only a single HTML file was modified and no build artifacts, dependencies, or temporary files were detected in the changes.
+*.pyc
+__pycache__/
+*.csv
+*.log
+*.tmp
+*.swp
+.env
+.env.local
+.vscode/
+.idea/
+dist/
+build/
+.venv/
+venv/
+node_modules/
