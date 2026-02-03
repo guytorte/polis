@@ -1,13 +1,861 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Análise Vorcaro - Testa de Ferro Recrutado</title>
-    <script type="module" crossorigin src="./dist/assets/index-CmuyHMt2.js"></script>
-    <link rel="stylesheet" crossorigin href="./dist/assets/index-D0SfuVf4.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Mito da Meritocracia | Manual Realpolitik</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        // Tailwind Configuration
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif']
+                    },
+                    colors: {
+                        real: {
+                            dark: '#0a0f1c',
+                            card: '#151b2e',
+                            accent: '#00d4ff',
+                            danger: '#ff3366',
+                            power: '#f59e0b',
+                            glass: 'rgba(255, 255, 255, 0.03)',
+                            deep: '#0c1426'
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                background-color: #0a0f1c;
+                color: #e2e8f0;
+                overflow-x: hidden;
+            }
+            
+            h1, h2, h3, h4, h5, h6 {
+                @apply font-display;
+            }
+        }
+        
+        @layer components {
+            .glass-panel {
+                @apply bg-gray-900/40 backdrop-blur-md border border-white/10 rounded-2xl p-6;
+            }
+            
+            .glass-card {
+                @apply bg-gray-900/20 backdrop-blur-lg border border-white/10 rounded-3xl p-8;
+            }
+            
+            .glow-text {
+                @apply text-transparent bg-clip-text bg-gradient-to-r from-real-accent to-blue-400;
+            }
+            
+            .glow-text-danger {
+                @apply text-transparent bg-clip-text bg-gradient-to-r from-real-danger to-red-400;
+            }
+            
+            .power-meter {
+                @apply h-2 bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 rounded-full;
+            }
+            
+            .alert-sign {
+                @apply inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/20 border border-red-500/30 text-red-400 text-xs font-bold tracking-wider;
+            }
+            
+            .chapter-header {
+                @apply relative mb-16 pb-8;
+            }
+            
+            .chapter-header::after {
+                content: '';
+                @apply absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-real-accent to-transparent;
+            }
+            
+            .toc-item {
+                @apply flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-all duration-300 cursor-pointer;
+            }
+            
+            .toc-item:hover .toc-number {
+                @apply translate-x-2;
+            }
+            
+            .toc-number {
+                @apply w-8 h-8 rounded-full bg-real-accent/20 flex items-center justify-center text-real-accent font-bold text-sm transition-transform duration-300;
+            }
+            
+            .highlight-box {
+                @apply glass-panel border-l-4 border-real-accent p-6 mb-6;
+            }
+            
+            .equation-box {
+                @apply glass-panel bg-blue-900/20 border border-blue-500/30 p-6 mb-6;
+            }
+            
+            .case-study {
+                @apply glass-panel bg-red-900/20 border border-red-500/30 p-6 mb-6;
+            }
+            
+            .warning-box {
+                @apply glass-panel bg-orange-900/20 border border-orange-500/30 p-6 mb-6;
+            }
+            
+            .exercise-box {
+                @apply glass-panel bg-purple-900/20 border border-purple-500/30 p-6 mb-6;
+            }
+            
+            .sticky-nav {
+                @apply sticky top-4 bg-gray-900/20 backdrop-blur-md border border-white/10 rounded-xl p-4;
+            }
+            
+            .scroll-progress {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 4px;
+                background: transparent;
+                z-index: 1000;
+            }
+            
+            .progress-bar {
+                height: 100%;
+                background: linear-gradient(90deg, #00d4ff, #ff3366);
+                width: 0%;
+                transition: width 0.1s ease-out;
+            }
+        }
+        
+        @layer utilities {
+            .hide-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+            .hide-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-real-accent selection:text-real-dark">
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress">
+        <div class="progress-bar"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-gray-900/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <i class="ph-fill ph-target text-real-accent text-2xl"></i>
+                <span class="font-display font-bold text-lg tracking-wider">REALPOLITIK<span class="text-real-accent">.BR</span></span>
+            </div>
+            <div class="hidden md:flex items-center gap-6 text-sm text-slate-400">
+                <a href="#chapter-1" class="hover:text-real-accent transition-colors">Capítulo 1</a>
+                <a href="#conclusion" class="hover:text-real-accent transition-colors">Conclusão</a>
+                <a href="#exercises" class="hover:text-real-accent transition-colors">Exercícios</a>
+            </div>
+            <button id="menu-toggle" class="md:hidden text-slate-400 hover:text-white">
+                <i class="ph-bold ph-list text-xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center pt-20 pb-10 px-6 overflow-hidden">
+        <!-- Background Effects -->
+        <div class="absolute inset-0 bg-gradient-radial from-blue-900/20 via-real-deep to-real-dark"></div>
+        <div class="absolute top-20 right-0 w-96 h-96 bg-real-accent/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-72 h-72 bg-real-danger/10 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/2 left-1/4 w-48 h-48 bg-real-power/10 rounded-full blur-2xl"></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto text-center space-y-8">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-real-accent/20 text-real-accent text-xs font-bold tracking-widest mb-4">
+                <span class="w-2 h-2 bg-real-accent rounded-full animate-pulse"></span>
+                MANUAL DE SOBREVIVÊNCIA INSTITUCIONAL
+            </div>
+            
+            <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight">
+                <span class="text-white">O Mito da</span><br/>
+                <span class="glow-text">Meritocracia</span><br/>
+                <span class="text-slate-400 text-2xl sm:text-3xl">No Serviço Público</span>
+            </h1>
+            
+            <p class="text-lg text-slate-400 max-w-3xl mx-auto leading-relaxed">
+                Um guia brutalmente honesto sobre como o poder real funciona nas instituições brasileiras.<br/>
+                <strong>Descubra por que seu colega incompetente virou seu chefe.</strong>
+            </p>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-4xl mx-auto">
+                <div class="glass-card text-center p-6">
+                    <div class="text-3xl font-display font-bold text-real-accent mb-2">8 anos</div>
+                    <div class="text-sm text-slate-400">Ricardo no departamento</div>
+                    <div class="text-xs text-slate-600 mt-2">Mestrado USP, pesquisador publicado</div>
+                </div>
+                <div class="glass-card text-center p-6">
+                    <div class="text-3xl font-display font-bold text-real-power mb-2">2 anos</div>
+                    <div class="text-sm text-slate-400">Paulinho de experiência</div>
+                    <div class="text-xs text-slate-600 mt-2">Borracharia do tio</div>
+                </div>
+                <div class="glass-card text-center p-6">
+                    <div class="text-3xl font-display font-bold text-real-danger mb-2">100%</div>
+                    <div class="text-sm text-slate-400">Das promoções</div>
+                    <div class="text-xs text-slate-600 mt-2">Baseadas em lealdade, não mérito</div>
+                </div>
+            </div>
+
+            <div class="flex justify-center gap-4 mt-8">
+                <a href="#chapter-1" class="px-8 py-3 bg-real-accent text-real-dark font-bold rounded-full hover:bg-white transition-all duration-300 shadow-lg shadow-real-accent/20">
+                    Começar Leitura
+                </a>
+                <a href="#toc" class="px-8 py-3 border border-white/20 text-white font-bold rounded-full hover:bg-white/10 transition-all duration-300">
+                    Ver Sumário
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Table of Contents -->
+    <section id="toc" class="py-16 px-6 bg-gradient-to-b from-real-deep to-real-dark">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="font-display text-3xl font-bold text-white mb-4">Sumário do Manual</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Um roteiro para entender o verdadeiro funcionamento do poder institucional</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="toc-item" onclick="document.getElementById('chapter-1').scrollIntoView({behavior: 'smooth'})">
+                    <div class="toc-number">1</div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-white">O Mito da Meritocracia</h3>
+                        <p class="text-sm text-slate-400">Por que seu colega incompetente virou seu chefe</p>
+                    </div>
+                    <i class="ph-bold ph-chevron-right text-slate-400"></i>
+                </div>
+                
+                <div class="toc-item" onclick="document.getElementById('economies').scrollIntoView({behavior: 'smooth'})">
+                    <div class="toc-number">2</div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-white">As Duas Economias</h3>
+                        <p class="text-sm text-slate-400">O que eles dizem vs. o que realmente importa</p>
+                    </div>
+                    <i class="ph-bold ph-chevron-right text-slate-400"></i>
+                </div>
+                
+                <div class="toc-item" onclick="document.getElementById('equation').scrollIntoView({behavior: 'smooth'})">
+                    <div class="toc-number">3</div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-white">Equação da Lealdade</h3>
+                        <p class="text-sm text-slate-400">Matemática do poder institucional</p>
+                    </div>
+                    <i class="ph-bold ph-chevron-right text-slate-400"></i>
+                </div>
+                
+                <div class="toc-item" onclick="document.getElementById('case-study').scrollIntoView({behavior: 'smooth'})">
+                    <div class="toc-number">4</div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-white">Estudo de Caso José</h3>
+                        <p class="text-sm text-slate-400">Como fracassar e ainda assim subir</p>
+                    </div>
+                    <i class="ph-bold ph-chevron-right text-slate-400"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapter 1 -->
+    <section id="chapter-1" class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="chapter-header text-center">
+                <h2 class="font-display text-4xl font-bold text-white mb-4">Capítulo 1: O Mito da Meritocracia</h2>
+                <p class="text-xl text-slate-400">Entendendo por que seu colega incompetente acabou de virar seu chefe</p>
+            </div>
+
+            <!-- Opening Scene -->
+            <div class="highlight-box">
+                <h3 class="font-display text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                    <i class="ph-bold ph-play-circle text-real-accent"></i>
+                    Cena de Abertura: O E-mail que Quebrou o Ricardo
+                </h3>
+                <div class="prose prose-invert prose-lg max-w-none text-slate-300 leading-relaxed">
+                    <p>Ricardo encarou a tela do computador por um minuto inteiro sem piscar.</p>
+                    <p>A linha de assunto dizia: "Comunicado Organizacional – Mudanças na Liderança".</p>
+                    <p>Ele estava no departamento havia oito anos. Mestrado pela USP. Pesquisador publicado. Tinha salvado pessoalmente três projetos importantes do colapso. Todo mundo sabia que ele era o próximo na fila para diretor.</p>
+                    <p>O e-mail anunciava que <strong class="text-real-accent">Paulinho</strong> era o novo diretor.</p>
+                    <p>Paulinho.</p>
+                    <p>O mesmo Paulinho que um dia perguntou ao Ricardo como converter um documento do Word para PDF. O mesmo Paulinho que chamava o PowerPoint de "aquele negócio de slides". O mesmo Paulinho cujo emprego anterior era administrar a borracharia do tio.</p>
+                    <p>Ricardo fez o que qualquer pessoa racional faria: marchou até o RH exigindo uma explicação.</p>
+                    <p>A gerente de RH olhou para ele com a paciência exausta de quem já teve aquela conversa mil vezes.</p>
+                    <p>"Ricardo", disse ela, "você é muito qualificado. Mas o Paulinho tem... outras qualidades de que precisamos agora."</p>
+                    <p>"Que qualidades? Incompetência? Nepotismo?"</p>
+                    <p>Ela se inclinou para a frente. "Paulinho é sobrinho do deputado Almeida. O deputado Almeida está na comissão de orçamento. O orçamento do nosso departamento será avaliado no mês que vem. Entendeu agora?"</p>
+                    <p>Ricardo entendeu.</p>
+                    <p>E também entendeu que estava jogando um jogo completamente diferente do que imaginava.</p>
+                </div>
+            </div>
+
+            <!-- The Two Economies -->
+            <div id="economies" class="glass-card mb-12">
+                <h3 class="font-display text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i class="ph-bold ph-chart-line text-real-power"></i>
+                    As Duas Moedas do Poder
+                </h3>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="border border-green-500/30 rounded-xl p-6 bg-green-900/10">
+                        <h4 class="font-bold text-green-400 mb-3 flex items-center gap-2">
+                            <i class="ph-bold ph-eye text-lg"></i>
+                            Economia #1: A Economia Visível
+                        </h4>
+                        <ul class="space-y-2 text-slate-300">
+                            <li class="flex items-start gap-2"><i class="ph-bold ph-check text-green-400 mt-1"></i> Mérito</li>
+                            <li class="flex items-start gap-2"><i class="ph-bold ph-check text-green-400 mt-1"></i> Desempenho</li>
+                            <li class="flex items-start gap-2"><i class="ph-bold ph-check text-green-400 mt-1"></i> Resultados</li>
+                            <li class="flex items-start gap-2"><i class="ph-bold ph-check text-green-400 mt-1"></i> Inovação</li>
+                            <li class="flex items-start gap-2"><i class="ph-bold ph-check text-green-400 mt-1"></i> Eficiência</li>
+                        </ul>
+                        <p class="text-sm text-slate-500 mt-4">O que colocam na vaga de emprego</p>
+                    </div>
+                    
+                    <div class="border border-red-500/30 rounded-xl p-6 bg-red-900/10">
+                        <h4 class="font-bold text-red-400 mb-3 flex items-center gap-2">
+                            <i class="ph-bold ph-eye-slash text-lg"></i>
+                            Economia #2: A Economia Real
+                        </h4>
+                        <ul class="space-y-2 text-slate-300">
+                            <li class="flex items-start gap-2"><i class="ph-bold ph-heart text-red-400 mt-1"></i> Lealdade</li>
+                            <li class="flex items-start gap-2"><i class="ph-bold ph-coins text-red-400 mt-1"></i> Dívida</li>
+                            <li class="flex items-start gap-2"><i class="ph-bold ph-handshake text-red-400 mt-1"></i> Quedas de braço</li>
+                            <li class="flex items-start gap-2"><i class="ph-bold ph-lock text-red-400 mt-1"></i> Discrição</li>
+                            <li class="flex items-start gap-2"><i class="ph-bold ph-clock text-red-400 mt-1"></i> Disponibilidade</li>
+                        </ul>
+                        <p class="text-sm text-slate-500 mt-4">O que determina quem fica com o cargo</p>
+                    </div>
+                </div>
+                
+                <div class="mt-6 p-4 bg-yellow-900/20 border border-yellow-500/30 rounded-xl">
+                    <p class="text-yellow-300 text-center font-bold">A Economia #1 é o que colocam na vaga de emprego. A Economia #2 é o que determina quem fica com o cargo.</p>
+                </div>
+            </div>
+
+            <!-- The Equation -->
+            <div id="equation" class="equation-box">
+                <h3 class="font-display text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i class="ph-bold ph-calculator text-blue-400"></i>
+                    A Equação Fundamental
+                </h3>
+                <p class="text-slate-300 mb-6">Eis a matemática que ninguém ensina na faculdade de administração pública:</p>
+                
+                <div class="bg-gray-800/50 rounded-xl p-6 mb-6 font-mono text-center">
+                    <div class="text-2xl text-blue-400 font-bold mb-2">VALOR NA CARREIRA =</div>
+                    <div class="text-lg text-white">(Competência × 0,2) + (Lealdade × 0,8)</div>
+                </div>
+                
+                <p class="text-slate-300 mb-6">Mas calma, piora. A fórmula ainda tem um componente negativo:</p>
+                
+                <div class="bg-gray-800/50 rounded-xl p-6 font-mono text-center">
+                    <div class="text-2xl text-red-400 font-bold mb-2">VALOR NA CARREIRA =</div>
+                    <div class="text-lg text-white">(Competência × 0,2) + (Lealdade × 0,8) - (Independência × 1,5)</div>
+                </div>
+                
+                <div class="mt-6">
+                    <h4 class="font-bold text-white mb-3">Componentes da Equação:</h4>
+                    <ul class="space-y-2 text-slate-300">
+                        <li class="flex items-start gap-3">
+                            <span class="text-blue-400 font-bold">Competência × 0,2:</span>
+                            <span>Importa, mas pouco. Acima de certo limite, vira ameaça.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-400 font-bold">Lealdade × 0,8:</span>
+                            <span>O fator principal. Pessoas leais são previsíveis e controláveis.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-red-400 font-bold">Independência × 1,5:</span>
+                            <span>Um passivo gigantesco. Pessoas independentes são imprevisíveis.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Case Study -->
+            <div id="case-study" class="case-study">
+                <h3 class="font-display text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i class="ph-bold ph-file-text text-red-400"></i>
+                    Estudo de Caso: Como José Subiu na Carreira Após um Fracasso Monumental
+                </h3>
+                
+                <div class="space-y-4 text-slate-300">
+                    <h4 class="font-bold text-white text-lg">Ato I: O Fracasso Espetacular</h4>
+                    <p>Deixa eu te contar sobre o José. Pessoa real, detalhes ligeiramente alterados para evitar processos, mas cada fato é verdadeiro.</p>
+                    <p>José era um gestor de nível médio numa empresa estatal. Seu projeto deveria modernizar a infraestrutura de TI. Orçamento: R$ 50 milhões. Prazo: 2 anos.</p>
+                    <p>Após 3 anos e R$ 80 milhões, o sistema estava pior do que antes. Literalmente pior. O sistema antigo ao menos funcionava. O novo travava diariamente.</p>
+                    
+                    <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-4">
+                        <h5 class="font-bold text-red-400 mb-2">Encontrados na auditoria:</h5>
+                        <ul class="space-y-1 text-sm">
+                            <li>• Contratos concedidos a empresas que não existiam</li>
+                            <li>• Equipamentos comprados que nunca chegaram</li>
+                            <li>• Consultores pagos por relatórios que nunca entregaram</li>
+                            <li>• O gestor do projeto (José) não conseguia explicar para onde foram 40% do orçamento</li>
+                        </ul>
+                    </div>
+                    
+                    <p>José deveria ter sido demitido. Talvez preso.</p>
+                    <p>Em vez disso, seis meses depois, José foi nomeado para uma diretoria no Ministério do Planejamento.</p>
+                    
+                    <h4 class="font-bold text-white text-lg mt-6">Ato II: A Promoção</h4>
+                    <p>Como?</p>
+                    <p>A investigação sobre o projeto fracassado do José implicava 17 pessoas, incluindo:</p>
+                    <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                        <li>O presidente que aprovou os contratos</li>
+                        <li>Três membros do conselho que assinaram</li>
+                        <li>O diretor de compras que acelerou tudo</li>
+                        <li>Dois auditores externos que não viram nada (de propósito)</li>
+                    </ul>
+                    
+                    <p>Todos envolvidos tinham algo a esconder.</p>
+                    <p>Quando o promotor começou a fazer perguntas, perceberam o problema: se QUALQUER um deles falasse, TODOS iriam para o buraco.</p>
+                    <p>Então fizeram um pacto: <strong class="text-real-danger">Ninguém fala. Todos saem ilesos.</strong></p>
+                    
+                    <p>Mas José era o fracasso mais visível. Os jornais estavam chamando de "Desastre da TI". Algo precisava ser feito para abafar.</p>
+                    <p>A solução? <strong class="text-real-accent">Promovê-lo para longe.</strong></p>
+                    
+                    <h4 class="font-bold text-white text-lg mt-6">Ato III: A Lógica</h4>
+                    <p>Eis a genialidade:</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mt-4">
+                        <div class="border border-green-500/30 rounded-xl p-4 bg-green-900/10">
+                            <h5 class="font-bold text-green-400 mb-2">Se José for promovido:</h5>
+                            <p class="text-sm">O projeto não foi um fracasso, foi um sucesso! José se saiu tão bem que ganhou um cargo maior!</p>
+                            <p class="text-xs text-slate-500 mt-2">A narrativa muda de "desastre corrupto" para "experiência de aprendizado para uma estrela em ascensão".</p>
+                        </div>
+                        
+                        <div class="border border-red-500/30 rounded-xl p-4 bg-red-900/10">
+                            <h5 class="font-bold text-red-400 mb-2">Se José for punido:</h5>
+                            <p class="text-sm">Isso foi um crime sério, vamos investigar todos os envolvidos.</p>
+                            <p class="text-xs text-slate-500 mt-2">Adivinha qual opção as 17 pessoas com segredos preferiram?</p>
+                        </div>
+                    </div>
+                    
+                    <p>Mas há uma segunda camada: José agora <strong class="text-real-danger">deve toda a carreira</strong> às pessoas que o protegeram. Ele está permanentemente comprometido. Nunca poderá traí-los porque eles têm provas de tudo o que ele fez. Ele é o subordinado perfeito: culpado, grato e preso na armadilha.</p>
+                </div>
+            </div>
+
+            <!-- Warning Signs -->
+            <div class="warning-box">
+                <h3 class="font-display text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i class="ph-bold ph-warning-octagon text-orange-400"></i>
+                    Sinais de Alerta de que Você é Competente Demais para o Serviço Público
+                </h3>
+                
+                <p class="text-slate-300 mb-6">Vamos fazer uma autoavaliação. Quantos destes se aplicam a você?</p>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start gap-4 p-4 bg-orange-900/20 rounded-xl border border-orange-500/30">
+                        <div class="alert-sign">⚠️ 1</div>
+                        <div>
+                            <h4 class="font-bold text-white">Você acha que mérito importa</h4>
+                            <p class="text-slate-400 text-sm mt-1">Se você acredita que fazer um bom trabalho levará a reconhecimento e promoção, você é competente demais.</p>
+                            <p class="text-orange-400 text-sm mt-2"><strong>Realidade:</strong> Bom trabalho te torna útil na posição atual. Vão te manter lá para sempre porque substituir você seria difícil.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4 p-4 bg-orange-900/20 rounded-xl border border-orange-500/30">
+                        <div class="alert-sign">⚠️ 2</div>
+                        <div>
+                            <h4 class="font-bold text-white">Você documenta tudo</h4>
+                            <p class="text-slate-400 text-sm mt-1">Você mantém registros meticulosos. Escreve relatórios detalhados. Cria trilhas de papel.</p>
+                            <p class="text-orange-400 text-sm mt-2"><strong>Realidade:</strong> Documentação é prova. Prova pode ser usada contra pessoas. Você acabou de se marcar como perigoso.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4 p-4 bg-orange-900/20 rounded-xl border border-orange-500/30">
+                        <div class="alert-sign">⚠️ 3</div>
+                        <div>
+                            <h4 class="font-bold text-white">Você pergunta "por quê?"</h4>
+                            <p class="text-slate-400 text-sm mt-1">Quando mandam você fazer algo incomum, você pede justificativa.</p>
+                            <p class="text-orange-400 text-sm mt-2"><strong>Realidade:</strong> "Por quê" não é pergunta de jogador de equipe. A resposta correta é "Quando precisa disso pronto?"</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4 p-4 bg-orange-900/20 rounded-xl border border-orange-500/30">
+                        <div class="alert-sign">⚠️ 4</div>
+                        <div>
+                            <h4 class="font-bold text-white">Você acredita que regras valem para todos</h4>
+                            <p class="text-slate-400 text-sm mt-1">Você acha que regulamentos devem ser seguidos consistentemente.</p>
+                            <p class="text-orange-400 text-sm mt-2"><strong>Realidade:</strong> Regras existem para serem aplicadas seletivamente. Sua crença na aplicação igual de regras te torna ingênuo.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4 p-4 bg-orange-900/20 rounded-xl border border-orange-500/30">
+                        <div class="alert-sign">⚠️ 5</div>
+                        <div>
+                            <h4 class="font-bold text-white">Você tem opções</h4>
+                            <p class="text-slate-400 text-sm mt-1">Você poderia deixar este emprego e encontrar outro relativamente fácil.</p>
+                            <p class="text-orange-400 text-sm mt-2"><strong>Realidade:</strong> Mobilidade é alavancagem. Alavancagem é ameaçadora. Pessoas preferem subordinados que não têm para onde ir.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 p-6 bg-gray-800/50 rounded-xl border border-white/10">
+                    <h4 class="font-bold text-white mb-4 text-center">O Sistema de Pontuação</h4>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                        <div class="p-4 bg-green-900/20 rounded-lg border border-green-500/30">
+                            <div class="text-2xl font-bold text-green-400">0-2</div>
+                            <div class="text-xs text-slate-400">Você pode sobreviver</div>
+                        </div>
+                        <div class="p-4 bg-yellow-900/20 rounded-lg border border-yellow-500/30">
+                            <div class="text-2xl font-bold text-yellow-400">3-5</div>
+                            <div class="text-xs text-slate-400">Você está em perigo</div>
+                        </div>
+                        <div class="p-4 bg-orange-900/20 rounded-lg border border-orange-500/30">
+                            <div class="text-2xl font-bold text-orange-400">6-8</div>
+                            <div class="text-xs text-slate-400">Você está ferrado</div>
+                        </div>
+                        <div class="p-4 bg-red-900/20 rounded-lg border border-red-500/30">
+                            <div class="text-2xl font-bold text-red-400">8</div>
+                            <div class="text-xs text-slate-400">Você é o Ricardo</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise Box -->
+            <div id="exercises" class="exercise-box">
+                <h3 class="font-display text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i class="ph-bold ph-calculator text-purple-400"></i>
+                    Exercício: Calcule Sua "Proporção Obediência-Competência"
+                </h3>
+                
+                <p class="text-slate-300 mb-6">Vamos ser matemáticos sobre suas perspectivas de carreira.</p>
+                
+                <div class="bg-purple-900/20 border border-purple-500/30 rounded-xl p-4 mb-6">
+                    <h4 class="font-bold text-purple-400 mb-2">A Fórmula:</h4>
+                    <div class="font-mono text-center text-lg bg-gray-800/50 rounded-lg p-4">
+                        POC = (Pontuação de Lealdade × Fator de Dependência) ÷ (Nível de Competência × Pensamento Independente)
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="border border-white/10 rounded-xl p-4">
+                        <h5 class="font-bold text-white mb-3">POC Alvo: 2,5 ou mais</h5>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-center gap-2">
+                                <span class="w-3 h-3 bg-red-500 rounded-full"></span>
+                                <span class="text-red-400">Abaixo de 2,0:</span> Competente e independente demais (perigoso)
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-3 h-3 bg-yellow-500 rounded-full"></span>
+                                <span class="text-yellow-400">2,0-3,0:</span> Zona ideal (útil mas controlável)
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+                                <span class="text-green-400">Acima de 3,5:</span> Perfeitamente obediente ou incompetente (ideal)
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="border border-white/10 rounded-xl p-4">
+                        <h5 class="font-bold text-white mb-3">Exemplo: POC do Ricardo</h5>
+                        <div class="text-sm space-y-1">
+                            <div>Lealdade: 15/50 (questiona coisas)</div>
+                            <div>Dependência: 0,8 (tem opções)</div>
+                            <div>Competência: 9/10 (doutorado, especialista)</div>
+                            <div>Pensamento Independente: 8/10 (se importa com regras)</div>
+                            <div class="border-t border-white/10 pt-2 mt-2 font-bold text-red-400">POC = 0,17 – Catastroficamente baixa</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 p-4 bg-gray-800/50 rounded-xl">
+                    <h5 class="font-bold text-white mb-2">Guia de Interpretação:</h5>
+                    <p class="text-slate-300 text-sm">Se sua POC é baixa, você tem duas escolhas: ou aumente sua POC (seja mais obediente, torne-se mais dependente) ou aceite seu teto (será tecnicamente respeitado, mas nunca terá poder real).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section id="conclusion" class="py-20 px-6 bg-gradient-to-b from-real-dark to-real-deep">
+        <div class="max-w-4xl mx-auto">
+            <div class="chapter-header text-center">
+                <h2 class="font-display text-4xl font-bold text-white mb-4">Conclusão do Capítulo 1</h2>
+                <p class="text-xl text-slate-400">Vamos revisitar Ricardo e Paulinho mais uma vez</p>
+            </div>
+
+            <div class="glass-card mb-12">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="border border-blue-500/30 rounded-xl p-6 bg-blue-900/10">
+                        <h3 class="font-bold text-blue-400 mb-4 flex items-center gap-2">
+                            <i class="ph-bold ph-user text-lg"></i>
+                            Ricardo
+                        </h3>
+                        <ul class="space-y-2 text-slate-300 text-sm">
+                            <li>• 8 anos no departamento</li>
+                            <li>• Mestrado pela USP</li>
+                            <li>• Pesquisador publicado</li>
+                            <li>• Salvou 3 projetos do colapso</li>
+                            <li>• Dominava sua área</li>
+                            <li>• Publicou artigos</li>
+                            <li>• Acreditava em mérito</li>
+                        </ul>
+                        <div class="mt-4 p-3 bg-blue-900/20 rounded-lg">
+                            <div class="text-blue-400 font-bold">R$ 12.000/mês</div>
+                            <div class="text-xs text-slate-400">Mesmo cargo técnico</div>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-red-500/30 rounded-xl p-6 bg-red-900/10">
+                        <h3 class="font-bold text-red-400 mb-4 flex items-center gap-2">
+                            <i class="ph-bold ph-crown text-lg"></i>
+                            Paulinho
+                        </h3>
+                        <ul class="space-y-2 text-slate-300 text-sm">
+                            <li>• 2 anos de experiência</li>
+                            <li>• Borracharia do tio</li>
+                            <li>• Sobrinho do deputado</li>
+                            <li>• Não entende o trabalho</li>
+                            <li>• Faz só o que mandam</li>
+                            <li>• Depende do cargo</li>
+                            <li>• Entende o jogo real</li>
+                        </ul>
+                        <div class="mt-4 p-3 bg-red-900/20 rounded-lg">
+                            <div class="text-red-400 font-bold">R$ 35.000/mês</div>
+                            <div class="text-xs text-slate-400">Cargo de diretor</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <p class="text-lg text-slate-300 mb-4">Ricardo é melhor no trabalho real. Todo mundo sabe. Até Paulinho sabe.</p>
+                    <p class="text-xl font-bold text-real-accent">Mas Paulinho tem algo que Ricardo nunca terá: ele entende o jogo real.</p>
+                </div>
+            </div>
+
+            <!-- Three Lessons -->
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="glass-card text-center">
+                    <i class="ph-bold ph-medal text-4xl text-real-accent mb-4"></i>
+                    <h3 class="font-bold text-white mb-3">Lição 1</h3>
+                    <p class="text-slate-300 text-sm">Mérito não é o mecanismo de seleção. <strong class="text-real-accent">Lealdade é.</strong></p>
+                </div>
+                
+                <div class="glass-card text-center">
+                    <i class="ph-bold ph-link-simple text-4xl text-real-power mb-4"></i>
+                    <h3 class="font-bold text-white mb-3">Lição 2</h3>
+                    <p class="text-slate-300 text-sm"><strong class="text-real-power">Dependência</strong> é um ativo, não uma fraqueza.</p>
+                </div>
+                
+                <div class="glass-card text-center">
+                    <i class="ph-bold ph-network text-4xl text-real-danger mb-4"></i>
+                    <h3 class="font-bold text-white mb-3">Lição 3</h3>
+                    <p class="text-slate-300 text-sm">Sua rede é seu <strong class="text-real-danger">verdadeiro currículo.</strong></p>
+                </div>
+            </div>
+
+            <!-- Mirror Exercise -->
+            <div class="exercise-box">
+                <h3 class="font-display text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i class="ph-bold ph-shield-star text-purple-400"></i>
+                    Exercício Final: O Espelho
+                </h3>
+                
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="font-bold text-white mb-3">Qual você é?</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-3 p-3 border border-white/10 rounded-lg hover:bg-white/5 cursor-pointer">
+                                <input type="radio" name="identity" class="text-real-accent">
+                                <span>Ricardo (competente, principista, perpetuamente frustrado)</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 border border-white/10 rounded-lg hover:bg-white/5 cursor-pointer">
+                                <input type="radio" name="identity" class="text-real-accent">
+                                <span>Paulinho (comprometido, leal, em ascensão)</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 border border-white/10 rounded-lg hover:bg-white/5 cursor-pointer">
+                                <input type="radio" name="identity" class="text-real-accent">
+                                <span>Algo no meio (e profundamente desconfortável com isso)</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-bold text-white mb-3">Qual você quer ser?</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-3 p-3 border border-white/10 rounded-lg hover:bg-white/5 cursor-pointer">
+                                <input type="radio" name="goal" class="text-real-accent">
+                                <span>Ricardo (vai dormir bem mas avançar devagar)</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 border border-white/10 rounded-lg hover:bg-white/5 cursor-pointer">
+                                <input type="radio" name="goal" class="text-real-accent">
+                                <span>Paulinho (vai avançar rápido mas dever tudo)</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 border border-white/10 rounded-lg hover:bg-white/5 cursor-pointer">
+                                <input type="radio" name="goal" class="text-real-accent">
+                                <span>Nem um nem outro (vai ter que encontrar seu próprio caminho)</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="p-4 bg-gray-800/50 rounded-xl border border-white/10">
+                        <p class="text-center text-slate-300"><strong>Não há respostas erradas.</strong> Mas há respostas com consequências.</p>
+                        <p class="text-center text-slate-300 mt-2">Escolha com sabedoria. Ou melhor: <strong class="text-real-accent">escolha conscientemente.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Chapter Preview -->
+    <section class="py-16 px-6 bg-gradient-to-r from-real-deep to-real-dark">
+        <div class="max-w-4xl mx-auto text-center">
+            <h3 class="font-display text-3xl font-bold text-white mb-4">Próximo Capítulo</h3>
+            <h4 class="text-2xl text-real-accent mb-6">A Arte da Estupidez Estratégica</h4>
+            <p class="text-lg text-slate-400 max-w-2xl mx-auto mb-8">"Quando fingir burrice, quando ser burro de verdade, e por que não há diferença"</p>
+            
+            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="glass-card text-left">
+                    <h5 class="font-bold text-white mb-3">Você vai aprender:</h5>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li class="flex items-start gap-2"><i class="ph-bold ph-dot text-real-accent mt-1"></i> Os três tipos de ignorância útil</li>
+                        <li class="flex items-start gap-2"><i class="ph-bold ph-dot text-real-accent mt-1"></i> Por que pessoas inteligentes praticam estupidez</li>
+                        <li class="flex items-start gap-2"><i class="ph-bold ph-dot text-real-accent mt-1"></i> Como calibrar suas gafes públicas</li>
+                    </ul>
+                </div>
+                
+                <div class="glass-card text-left">
+                    <h5 class="font-bold text-white mb-3">Perguntas para Reflexão:</h5>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li class="flex items-start gap-2"><i class="ph-bold ph-dot text-real-accent mt-1"></i> Ricardo está melhor sabendo o jogo errado?</li>
+                        <li class="flex items-start gap-2"><i class="ph-bold ph-dot text-real-accent mt-1"></i> Onde está a linha entre estratégia e corrupção?</li>
+                        <li class="flex items-start gap-2"><i class="ph-bold ph-dot text-real-accent mt-1"></i> Como mudar essa dinâmica?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-white/10">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center">
+                <div class="flex justify-center items-center gap-3 mb-4">
+                    <i class="ph-fill ph-target text-real-accent text-2xl"></i>
+                    <span class="font-display font-bold text-lg">REALPOLITIK<span class="text-real-accent">.BR</span></span>
+                </div>
+                <p class="text-slate-400 max-w-2xl mx-auto mb-6">
+                    Manual de sobrevivência institucional. Revelando os mecanismos reais do poder nas organizações brasileiras.
+                </p>
+                <div class="flex justify-center gap-6 text-slate-500 text-sm">
+                    <span>© 2026 Realpolitik.br</span>
+                    <span>•</span>
+                    <span>Para estudantes da realidade</span>
+                    <span>•</span>
+                    <span>Não para sonhadores</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            document.querySelector('.progress-bar').style.width = scrollPercent + '%';
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation for elements when they come into view
+        gsap.utils.toArray('.glass-card, .highlight-box, .equation-box, .case-study, .warning-box, .exercise-box').forEach(card => {
+            gsap.fromTo(card, {
+                y: 50,
+                opacity: 0,
+                scale: 0.95
+            }, {
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                duration: 0.8,
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        });
+
+        // Staggered animations for stats cards
+        gsap.fromTo('.stats-card', {
+            y: 30,
+            opacity: 0
+        }, {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.2,
+            scrollTrigger: {
+                trigger: '.stats-card',
+                start: 'top 80%'
+            }
+        });
+
+        // Menu toggle functionality
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('mobile-menu-open');
+        });
+
+        // Add some interactive effects
+        document.querySelectorAll('.toc-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                gsap.to(this, {scale: 1.02, duration: 0.2});
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                gsap.to(this, {scale: 1, duration: 0.2});
+            });
+        });
+    </script>
+</body>
 </html>
