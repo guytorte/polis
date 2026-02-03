@@ -1,1 +1,15 @@
-Nothing should be ignored based on the provided file changes, as they only include source/config files (.csv, .md) without any build artifacts, dependencies, or temporary files.
+*.pyc
+__pycache__/
+*.csv
+*.log
+*.tmp
+*.swp
+.env
+.env.local
+.vscode/
+.idea/
+dist/
+build/
+.venv/
+venv/
+node_modules/
