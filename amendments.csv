@@ -1,0 +1,9 @@
+amendment_id,year,recipient_municipality,recipient_state,amount,type,politician_name,political_party
+1,2022,São Paulo,SP,5000000,Individual,João Silva,PSDB
+2,2022,Rio de Janeiro,RJ,3000000,Individual,Maria Santos,PT
+3,2022,Belo Horizonte,MG,4000000,Bancada,Eduardo Costa,PSD
+4,2022,Brasília,DF,7000000,Relator,Carlos Oliveira,PL
+5,2021,Salvador,BA,2500000,Individual,Ana Pereira,PDT
+6,2021,Fortaleza,CE,3500000,Bancada,Rodrigo Almeida,DEM
+7,2021,Curitiba,PR,4500000,Individual,Fernanda Lima,PSB
+8,2021,Manaus,AM,2000000,Bancada,Antônio Souza,Republicanos

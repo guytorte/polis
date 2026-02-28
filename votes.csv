@@ -1,0 +1,9 @@
+vote_id,session_date,vote_type,bill_number,representative_name,political_party,state,vote_choice
+1,2022-03-15,Chamber Bill,PL 1234/2021,João Silva,PSDB,SP,Yea
+2,2022-03-15,Chamber Bill,PL 1234/2021,Maria Santos,PT,RJ,Nay
+3,2022-03-15,Chamber Bill,PL 1234/2021,Eduardo Costa,PSD,MG,Yea
+4,2022-03-20,Chamber Bill,PL 5678/2021,Carlos Oliveira,PL,DF,Abstention
+5,2022-03-20,Chamber Bill,PL 5678/2021,Ana Pereira,PDT,BA,Yea
+6,2022-03-22,Chamber Bill,PL 9012/2021,Rodrigo Almeida,DEM,CE,Nay
+7,2022-03-22,Chamber Bill,PL 9012/2021,Fernanda Lima,PSB,PR,Yea
+8,2022-03-25,Chamber Bill,PL 3456/2021,Antônio Souza,Republicanos,AM,Yea
