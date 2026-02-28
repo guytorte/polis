@@ -28,11 +28,17 @@
                             accent: '#00d4ff',
                             danger: '#ff3366',
                             power: '#f59e0b',
-                            glass: 'rgba(255, 255, 255, 0.03)'
+                            glass: 'rgba(255, 255, 255, 0.03)',
+                            primary: '#1e40af',
+                            secondary: '#3b82f6'
                         }
                     },
                     backgroundImage: {
                         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s infinite',
+                        'bounce-slow': 'bounce 3s infinite',
                     }
                 }
             }
@@ -73,7 +79,16 @@
         }
         
         .animate-border {
-            animation: pulse-border 2s infinite;
+            animation: pulse-border 3s infinite;
+        }
+        
+        .animate-glow {
+            animation: glow-pulse 4s infinite alternate;
+        }
+        
+        @keyframes glow-pulse {
+            0% { box-shadow: 0 0 10px rgba(0, 212, 255, 0.2); }
+            100% { box-shadow: 0 0 30px rgba(0, 212, 255, 0.6); }
         }
         
         .risk-indicator {
@@ -90,9 +105,9 @@
 <body class="antialiased selection:bg-real-accent selection:text-real-dark">
 
     <!-- Navegação Fixa -->
-    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-white/5">
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-white/5 shadow-lg">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 animate-glow">
                 <i class="ph-fill ph-vault text-real-accent text-2xl"></i>
                 <span class="font-display font-bold tracking-wider">REALPOLITIK<span class="text-real-accent">.ORC</span></span>
             </div>
@@ -141,7 +156,7 @@
                 </div>
             </div>
 
-            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-slate-600">
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce-slow text-slate-600">
                 <i class="ph-bold ph-caret-down text-2xl"></i>
             </div>
         </div>
@@ -175,13 +190,13 @@
                 </div>
                 
                 <!-- Visualização da Tensão -->
-                <div class="glass-panel rounded-3xl p-8 relative overflow-hidden animate-border">
+                <div class="glass-panel rounded-3xl p-8 relative overflow-hidden animate-border hover:shadow-xl transition-shadow">
                     <div class="absolute top-0 right-0 p-4 opacity-20">
                         <i class="ph-fill ph-scales text-6xl"></i>
                     </div>
                     
                     <div class="space-y-6">
-                        <div class="flex justify-between items-center border-b border-white/10 pb-4">
+                        <div class="flex justify-between items-center border-b border-white/10 pb-4 hover:bg-white/5 transition-colors">
                             <div class="flex items-center gap-3">
                                 <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
                                     <i class="ph-bold ph-crown"></i>
@@ -201,7 +216,7 @@
                             <i class="ph-bold ph-arrows-left-right text-2xl text-slate-600"></i>
                         </div>
 
-                        <div class="flex justify-between items-center border-b border-white/10 pb-4">
+                        <div class="flex justify-between items-center border-b border-white/10 pb-4 hover:bg-white/5 transition-colors">
                             <div class="flex items-center gap-3">
                                 <div class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400">
                                     <i class="ph-bold ph-users"></i>
@@ -218,7 +233,7 @@
                         </div>
                     </div>
 
-                    <div class="mt-6 p-4 bg-real-danger/10 rounded-lg border border-real-danger/20">
+                    <div class="mt-6 p-4 bg-real-danger/10 rounded-lg border border-real-danger/20 hover:border-real-danger/40 transition-colors">
                         <div class="text-xs text-real-danger font-bold mb-1">CUSTO DE OPORTUNIDADE</div>
                         <div class="text-sm text-slate-300">
                             Cada R$ 1 milhão em emenda individual equivale a ~0,8% de chances a mais de reeleição para o parlamentar (estudos FGV/CEBRAP).
