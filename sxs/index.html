@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Roteiro de Fechamento High-Ticket - Material Confidencial para Time de Vendas">
+    <title>ROTEIRO DE FECHAMENTO HIGH-TICKET | Investimentos EUA</title>
+    <style>
+        :root {
+            --primary-color: #1a5f7a;
+            --secondary-color: #159895;
+            --accent-color: #ff6b6b;
+            --background-light: #f8f9fa;
+            --background-dark: #2c3e50;
+            --text-primary: #2c3e50;
+            --text-secondary: #5a6c7d;
+            --text-light: #ffffff;
+            --border-color: #e0e0e0;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 8px rgba(0,0,0,0.15);
+            --shadow-lg: 0 8px 16px rgba(0,0,0,0.2);
+            --border-radius: 8px;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--background-light);
+            font-size: 16px;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Accessibility: Dynamic Type Support */
+        @media (prefers-contrast: high) {
+            :root {
+                --text-primary: #000000;
+                --text-secondary: #333333;
+                --border-color: #000000;
+            }
+        }
+
+        /* Header with Visual Signifiers */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+            padding: 2rem 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-md);
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        header .classification {
+            background-color: var(--accent-color);
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* Navigation with Bottom Bar Pattern (Apple HIG) */
+        nav {
+            background-color: var(--background-dark);
+            position: sticky;
+            bottom: 0;
+            z-index: 100;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: space-around;
+            list-style: none;
+            padding: 0.75rem 0;
+            margin: 0;
+        }
+
+        nav li {
+            flex: 1;
+            text-align: center;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.875rem;
+            padding: 0.5rem;
+            display: block;
+            transition: background-color var(--transition-speed);
+            border-radius: var(--border-radius);
+        }
+
+        nav a:hover, nav a:focus {
+            background-color: rgba(255,255,255,0.2);
+            outline: 2px solid var(--text-light);
+        }
+
+        nav a[aria-current="page"] {
+            background-color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        /* Main Content with Progressive Disclosure */
+        main {
+            padding: 1.5rem 1rem;
+            padding-bottom: 5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Section Cards with Expandable Content */
+        section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        section:hover {
+            box-shadow: var(--shadow-md);
+            transition: box-shadow var(--transition-speed);
+        }
+
+        .section-header {
+            padding: 1.25rem;
+            background-color: var(--background-light);
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color var(--transition-speed);
+        }
+
+        .section-header:hover, .section-header:focus {
+            background-color: #e8f4f8;
+            outline: none;
+        }
+
+        .section-header h2 {
+            font-size: 1.125rem;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .section-header .icon {
+            font-size: 1.25rem;
+            transition: transform var(--transition-speed);
+        }
+
+        section.expanded .section-header .icon {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.3s ease-out;
+        }
+
+        section.expanded .section-content {
+            padding: 1.25rem;
+            max-height: 2000px;
+        }
+
+        /* Script Cards with Visual Signifiers */
+        .script-card {
+            background-color: var(--background-light);
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            position: relative;
+        }
+
+        .script-card::before {
+            content: "💬";
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            opacity: 0.5;
+            font-size: 1rem;
+        }
+
+        .script-card:hover {
+            background-color: #e8f4f8;
+            transition: background-color var(--transition-speed);
+        }
+
+        .script-card .script-id {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .script-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-primary);
+        }
+
+        /* Copy Button with Visual Feedback */
+        .copy-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 0.875rem;
+            margin-top: 0.75rem;
+            transition: background-color var(--transition-speed);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .copy-btn:hover, .copy-btn:focus {
+            background-color: var(--secondary-color);
+            outline: 2px solid var(--primary-color);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Objection Handler Cards */
+        .objection-card {
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            background-color: white;
+        }
+
+        .objection-card:hover {
+            border-color: var(--secondary-color);
+            transition: border-color var(--transition-speed);
+        }
+
+        .objection-card h3 {
+            color: var(--accent-color);
+            font-size: 1.125rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .objection-card .strategy {
+            background-color: var(--background-light);
+            padding: 0.75rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .objection-card .advanced-tactic {
+            background-color: #fff3cd;
+            border-left: 4px solid var(--warning-color);
+            padding: 0.75rem;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+        }
+
+        /* Tables with Responsive Design */
+        .table-container {
+            overflow-x: auto;
+            margin: 1rem 0;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+            min-width: 600px;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--background-light);
+        }
+
+        tr:hover {
+            background-color: #e8f4f8;
+        }
+
+        /* Close Cards with Color Coding */
+        .close-card {
+            border-radius: var(--border-radius);
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            border-left: 5px solid;
+        }
+
+        .close-card.urgency {
+            border-left-color: var(--accent-color);
+            background-color: #fff5f5;
+        }
+
+        .close-card.opportunity {
+            border-left-color: var(--success-color);
+            background-color: #f0fff4;
+        }
+
+        .close-card.guarantee {
+            border-left-color: var(--secondary-color);
+            background-color: #f0f9ff;
+        }
+
+        .close-card.logic {
+            border-left-color: var(--primary-color);
+            background-color: #f8f9fa;
+        }
+
+        .close-card.vision {
+            border-left-color: var(--warning-color);
+            background-color: #fffbeb;
+        }
+
+        .close-card.assumption {
+            border-left-color: var(--background-dark);
+            background-color: #f1f5f9;
+        }
+
+        .close-card h4 {
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .close-card .when-to-use {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        /* Toulmin Framework Section */
+        .toulmin-card {
+            background-color: white;
+            border: 2px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .toulmin-component {
+            margin-bottom: 1rem;
+        }
+
+        .toulmin-component:last-child {
+            margin-bottom: 0;
+        }
+
+        .toulmin-component h5 {
+            color: var(--primary-color);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Quick Reference Section */
+        .quick-ref {
+            background-color: var(--background-dark);
+            color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .quick-ref h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .quick-ref .final-note {
+            background-color: var(--accent-color);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        /* Accessibility Features */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Focus Indicators for Keyboard Navigation */
+        *:focus {
+            outline: 3px solid var(--secondary-color);
+            outline-offset: 2px;
+        }
+
+        /* Reduced Motion Preference */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            nav, .copy-btn, .section-header {
+                display: none;
+            }
+            
+            section.expanded .section-content {
+                max-height: none;
+                padding: 1rem;
+            }
+            
+            body {
+                background-color: white;
+                font-size: 12pt;
+            }
+        }
+
+        /* Mobile Optimization (80 characters per line guideline) */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.25rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1rem;
+            }
+            
+            .script-card p {
+                font-size: 0.9375rem;
+            }
+            
+            nav ul {
+                padding: 0.5rem 0;
+            }
+            
+            nav a {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Search/Filter Functionality */
+        .search-container {
+            padding: 1rem;
+            background-color: white;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 120px;
+            z-index: 99;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: border-color var(--transition-speed);
+        }
+
+        .search-input:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+        }
+
+        /* Toast Notification for Copy */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--background-dark);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 200;
+        }
+
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Expand/Collapse All Controls */
+        .controls {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: white;
+            border-bottom: 1px solid var(--border-color);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background-color: var(--background-light);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all var(--transition-speed);
+        }
+
+        .control-btn:hover, .control-btn:focus {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+    <header role="banner">
+        <h1>ROTEIRO DE FECHAMENTO HIGH-TICKET</h1>
+        <p class="subtitle">Investimentos nos EUA — Mercado Americano</p>
+        <span class="classification">🔒 Material Confidencial — Uso Interno do Time de Vendas</span>
+        <p style="margin-top: 0.75rem; font-size: 0.875rem; opacity: 0.9;">🎯 TOM NATURAL PARA LIGAÇÃO — adaptado para soar como conversa real</p>
+    </header>
+
+    <div class="search-container">
+        <label for="search-input" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;">Buscar no roteiro</label>
+        <input type="search" id="search-input" class="search-input" placeholder="🔍 Buscar por objeção, frase ou seção..." aria-label="Buscar conteúdo no roteiro">
+    </div>
+
+    <div class="controls">
+        <button class="control-btn" id="expand-all" aria-label="Expandir todas as seções">📖 Expandir Tudo</button>
+        <button class="control-btn" id="collapse-all" aria-label="Recolher todas as seções">📕 Recolher Tudo</button>
+    </div>
+
+    <nav role="navigation" aria-label="Navegação principal">
+        <ul>
+            <li><a href="#contexto" aria-current="page">📍 Contexto</a></li>
+            <li><a href="#parte1">🎯 Autoridade</a></li>
+            <li><a href="#parte2">🛡️ Objeções</a></li>
+            <li><a href="#parte3">✅ Fechamentos</a></li>
+            <li><a href="#parte5">📋 Rápido</a></li>
+        </ul>
+    </nav>
+
+    <main id="main-content" role="main">
+        <!-- Contexto Section -->
+        <section id="contexto" class="expanded" aria-labelledby="contexto-title">
+            <div class="section-header" tabindex="0" role="button" aria-expanded="true" aria-controls="contexto-content">
+                <h2 id="contexto-title">📍 CONTEXTO E POSICIONAMENTO</h2>
+                <span class="icon" aria-hidden="true">▼</span>
+            </div>
+            <div id="contexto-content" class="section-content">
+                <div class="script-card">
+                    <p><strong>O brasileiro valoriza relacionamento e confiança, mas é naturalmente desconfiado</strong> — e com razão. O histórico de golpes, pirâmides e falsos gurus criou um radar afiado. Além disso, ele carrega dores econômicas reais: o Real caindo, a inflação corroendo e o famoso 'Risco Brasil' no noticiário todo dia.</p>
+                </div>
+                <div class="script-card" style="border-left-color: var(--primary-color);">
+                    <p><strong>🎭 Seu papel:</strong> Você não é o vendedor. Você é o <strong>guardião do tempo do Especialista</strong> — um assessor estratégico que seleciona candidatos com o perfil certo. Isso muda tudo no tom da conversa.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Parte 1: Autoridade -->
+        <section id="parte1" aria-labelledby="parte1-title">
+            <div class="section-header" tabindex="0" role="button" aria-expanded="false" aria-controls="parte1-content">
+                <h2 id="parte1-title">🎯 PARTE 1 — FRASES DE POSICIONAMENTO E AUTORIDADE</h2>
+                <span class="icon" aria-hidden="true">▼</span>
+            </div>
+            <div id="parte1-content" class="section-content">
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">Use essas frases no começo da conversa para sair do lugar de vendedor e assumir o papel de selecionador. O objetivo é que o cliente sinta que está sendo avaliado, não que está sendo convencido.</p>
+                
+                <h3 style="margin: 1.5rem 0 1rem; color: var(--primary-color);">1.1 Autoridade — Conjunto A</h3>
+                
+                <div class="script-card">
+                    <div class="script-id">Script #1</div>
+                    <p>"Olha, meu papel aqui hoje não é te empurrar um curso. O tempo do [Especialista] é 100% com quem já é aluno. O que eu faço é filtrar quem tem o perfil pra dolarizar o patrimônio de verdade — e não vai gerar dor de cabeça lá dentro."</p>
+                    <button class="copy-btn" data-text="Olha, meu papel aqui hoje não é te empurrar um curso. O tempo do [Especialista] é 100% com quem já é aluno. O que eu faço é filtrar quem tem o perfil pra dolarizar o patrimônio de verdade — e não vai gerar dor de cabeça lá dentro.">
+                        📋 Copiar
+                    </button>
+                </div>
+
+                <div class="script-card">
+                    <div class="script-id">Script #2</div>
+                    <p>"Sabe por que os alunos do [Especialista] têm tanto resultado? Por um único motivo: eles deixam o ego na porta, copiam os frameworks de investimento que ele usa na própria carteira, e simplesmente executam."</p>
+                    <button class="copy-btn" data-text="Sabe por que os alunos do [Especialista] têm tanto resultado? Por um único motivo: eles deixam o ego na porta, copiam os frameworks de investimento que ele usa na própria carteira, e simplesmente executam.">
+                        📋 Copiar
+                    </button>
+                </div>
+
+                <div class="script-card">
+                    <div class="script-id">Script #3</div>
+                    <p>"Você não precisa falar inglês ou ser PhD em matemática. O [Especialista] já mastigou o mercado americano inteiro pra você. O que eu preciso saber é: quando ele disser o momento de aportar e como balancear, você vai lá e faz?"</p>
+                    <button class="copy-btn" data-text="Você não precisa falar inglês ou ser PhD em matemática. O [Especialista] já mastigou o mercado americano inteiro pra você. O que eu preciso saber é: quando ele disser o momento de aportar e como balancear, você vai lá e faz?">
+                        📋 Copiar
+                    </button>
+                </div>
+
+                <div class="script-card">
+                    <div class="script-id">Script #4</div>
+                    <p>"Olha, isso não é algo que eu quero que você faça. Proteger o seu patrimônio do Risco Brasil e de um real cada vez mais fraco — isso é algo que você precisa fazer pela sua família. É diferente."</p>
+                    <button class="copy-btn" data-text="Olha, isso não é algo que eu quero que você faça. Proteger o seu patrimônio do Risco Brasil e de um real cada vez mais fraco — isso é algo que você precisa fazer pela sua família. É diferente.">
+                        📋 Copiar
+                    </button>
+                </div>
+
+                <div class="script-card">
+                    <div class="script-id">Script #5</div>
+                    <p>"Me dá 1% de confiança agora pra gente dar esse próximo passo. O método do [Especialista] vai te provar os outros 99% lá dentro."</p>
+                    <button class="copy-btn" data-text="Me dá 1% de confiança agora pra gente dar esse próximo passo. O método do [Especialista] vai te provar os outros 99% lá dentro.">
+                        📋 Copiar
+                    </button>
+                </div>
+
+                <div class="script-card">
+                    <div class="script-id">Script #6</div>
+                    <p>"A única certeza que a gente tem é que deixar tudo no Brasil é a escolha mais arriscada que você pode fazer hoje. Vamos resolver isso."</p>
+                    <button class="copy-btn" data-text="A única certeza que a gente tem é que deixar tudo no Brasil é a escolha mais arriscada que você pode fazer hoje. Vamos resolver isso.">
+                        📋 Copiar
+                    </button>
+                </div>
+
+                <h3 style="margin: 1.5rem 0 1rem; color: var(--primary-color);">1.2 Autoridade — Conjunto B</h3>
+
+                <div class="script-card">
+                    <div class="script-id">Script #7</div>
+                    <p>"A B3 é um aquário. O mercado americano é o oceano. Enquanto você fica no aquário, seu dinheiro continua refém de Brasília e de taxa de juros. O [Especialista] vai te jogar no oceano — com um mapa na mão."</p>
+                    <button class="copy-btn" data-text="A B3 é um aquário. O mercado americano é o oceano. Enquanto você fica no aquário, seu dinheiro continua refém de Brasília e de taxa de juros. O [Especialista] vai te jogar no oceano — com um mapa na mão.">
+                        📋 Copiar
+                    </button>
+                </div>
+
+                <div class="script-card">
+                    <div class="script-id">Script #8</div>
+                    <p>"O [Especialista] não vive de vender mentoria — ele vive dos dividendos em dólar que ele construiu com esse método. O que eu estou te oferecendo aqui não é um curso, é um 'copiar e colar' da carteira de um cara que já chegou lá."</p>
+                    <button class="copy-btn" data-text="O [Especialista] não vive de vender mentoria — ele vive dos dividendos em dólar que ele construiu com esse método. O que eu estou te oferecendo aqui não é um curso, é um 'copiar e colar' da carteira de um cara que já chegou lá.">
+                        📋 Copiar
+                    </button>
+                </div>
+
+                <div class="script-card">
+                    <div class="script-id">Script #9</div>
+                    <p>"Você já reparou que as pessoas mais ricas do Brasil não deixam o dinheiro aqui no Brasil? Elas dolarizam. O que eu quero é te dar acesso ao mesmo nível de proteção que a elite usa — só que mastigado pro seu momento atual."</p>
+                    <button class="copy-btn" data-text="Você já reparou que as pessoas mais ricas do Brasil não deixam o dinheiro aqui no Brasil? Elas dolarizam. O que eu quero é te dar acesso ao mesmo nível de proteção que a elite usa — só que mastigado pro seu momento atual.">
+                        📋 Copiar
+                    </button>
+                </div>
+
+                <div class="script-card">
+                    <div class="script-id">Script #10</div>
+                    <p>"Meu trabalho não é te convencer de nada. Os números do mercado americano não precisam de mim pra provar que são os melhores. O que eu faço é ver se você tem o perfil disciplinado que o [Especialista] exige pra estar no grupo de alunos dele."</p>
+                    <button class="copy-btn" data-text="Meu trabalho não é te convencer de nada. Os números do mercado americano não precisam de mim pra provar que são os melhores. O que eu faço é ver se você tem o perfil disciplinado que o [Especialista] exige pra estar no grupo de alunos dele.">
+                        📋 Copiar
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Parte 2: Objeções -->
+        <section id="parte2" aria-labelledby="parte2-title">
+            <div class="section-header" tabindex="0" role="button" aria-expanded="false" aria-controls="parte2-content">
+                <h2 id="parte2-title">🛡️ PARTE 2 — QUEBRA DE OBJEÇÕES</h2>
+                <span class="icon" aria-hidden="true">▼</span>
+            </div>
+            <div id="parte2-content" class="section-content">
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">Para cada objeção, siga a estratégia indicada. Não pule etapas — respeite o ritmo da argumentação antes de partir pro fechamento.</p>
+
+                <!-- Objeção 1 -->
+                <div class="objection-card">
+                    <h3>🤔 "Vou pensar / Preciso refletir"</h3>
+                    <div class="strategy">
+                        <strong>Estratégia:</strong> Custo de Oportunidade & Reframe Temporal
+                    </div>
+                    
+                    <div class="script-card">
+                        <div class="script-id">Script #11</div>
+                        <p>"Cara, eu entendo. Você quer ter certeza antes de decidir — isso faz todo sentido. Mas deixa eu te perguntar uma coisa: há quanto tempo você já está 'pensando' em investir fora do Brasil? Seis meses? Um ano? E enquanto você pensa, o dólar já subiu, a inflação já comeu uma parte do seu poder de compra. Pensar não protege o seu patrimônio. Agir, sim."</p>
+                        <button class="copy-btn" data-text="Cara, eu entendo. Você quer ter certeza antes de decidir — isso faz todo sentido. Mas deixa eu te perguntar uma coisa: há quanto tempo você já está 'pensando' em investir fora do Brasil? Seis meses? Um ano? E enquanto você pensa, o dólar já subiu, a inflação já comeu uma parte do seu poder de compra. Pensar não protege o seu patrimônio. Agir, sim.">
+                            📋 Copiar
+                        </button>
+                    </div>
+
+                    <div class="script-card">
+                        <div class="script-id">Script #12</div>
+                        <p>"Olha, você e eu sabemos que a melhor hora de tomar uma decisão é quando as informações estão frescas na cabeça. A estratégia faz sentido pra você? O método do [Especialista] faz sentido? Então não deixa a procrastinação te sabotar agora. Vamos dar esse passo."</p>
+                        <button class="copy-btn" data-text="Olha, você e eu sabemos que a melhor hora de tomar uma decisão é quando as informações estão frescas na cabeça. A estratégia faz sentido pra você? O método do [Especialista] faz sentido? Então não deixa a procrastinação te sabotar agora. Vamos dar esse passo.">
+                            📋 Copiar
+                        </button>
+                    </div>
+
+                    <div class="script-card">
+                        <div class="script-id">Script #13</div>
+                        <p>"Grandes investidores decidem rápido e mudam de ideia devagar. Quem fica estagnado faz o contrário. Você me disse lá no começo da ligação que quer mudar seu patamar financeiro. Então me fala: a sua dúvida real é sobre o método, é sobre o [Especialista]... ou é só aquele frio na barriga de fazer algo novo?"</p>
+                        <button class="copy-btn" data-text="Grandes investidores decidem rápido e mudam de ideia devagar. Quem fica estagnado faz o contrário. Você me disse lá no começo da ligação que quer mudar seu patamar financeiro. Então me fala: a sua dúvida real é sobre o método, é sobre o [Especialista]... ou é só aquele frio na barriga de fazer algo novo?">
+                            📋 Copiar
+                        </button>
+                    </div>
+
+                    <div class="advanced-tactic">
+                        <strong>⚡ Tática Avançada:</strong> Use o argumento de escala — 'No curtíssimo prazo, não decidir hoje te dá o conforto de não sair da inércia. Mas a magnitude do problema — a erosão do seu poder de compra em dólar — afeta o seu futuro financeiro inteiro.'
+                    </div>
+                </div>
+
+                <!-- Objeção 2 -->
+                <div class="objection-card">
+                    <h3>💳 "Não tenho limite no cartão / Tá apertado agora"</h3>
+                    <div class="strategy">
+                        <strong>Estratégia:</strong> Reframe de Prioridade & Engenharia Financeira
+                    </div>
+                    
+                    <div class="script-card">
+                        <div class="script-id">Script #17</div>
+                        <p>"Olha, pensa comigo: se o seu carro fundisse o motor hoje, ou se tivesse uma emergência médica na família, você arrumava R$5.000 até o final do dia, né? Pega emprestado, passa em dois cartões... O problema aqui não é a falta de dinheiro ou de limite. É a prioridade."</p>
+                        <button class="copy-btn" data-text="Olha, pensa comigo: se o seu carro fundisse o motor hoje, ou se tivesse uma emergência médica na família, você arrumava R$5.000 até o final do dia, né? Pega emprestado, passa em dois cartões... O problema aqui não é a falta de dinheiro ou de limite. É a prioridade.">
+                            📋 Copiar
+                        </button>
+                    </div>
+
+                    <div class="script-card">
+                        <div class="script-id">Script #20</div>
+                        <p>"Deixa eu te fazer uma pergunta: se dinheiro não fosse o problema — se você tivesse R$100 mil sobrando na conta agora — você entraria nessa mentoria? [Espera o SIM.] Então o método você já validou. O que a gente precisa agora é de engenharia financeira. Posso liberar um link misto — você passa o que tem de limite no cartão e faz um PIX do resto."</p>
+                        <button class="copy-btn" data-text="Deixa eu te fazer uma pergunta: se dinheiro não fosse o problema — se você tivesse R$100 mil sobrando na conta agora — você entraria nessa mentoria? [Espera o SIM.] Então o método você já validou. O que a gente precisa agora é de engenharia financeira. Posso liberar um link misto — você passa o que tem de limite no cartão e faz um PIX do resto.">
+                            📋 Copiar
+                        </button>
+                    </div>
+
+                    <div class="script-card">
+                        <div class="script-id">Script #21</div>
+                        <p>"Eu não estou te vendendo um passivo. Estou te entregando um ativo. O conhecimento de montar uma carteira de dividendos em dólar vai pagar esse cartão de crédito no futuro. É a única dívida boa que você pode fazer hoje."</p>
+                        <button class="copy-btn" data-text="Eu não estou te vendendo um passivo. Estou te entregando um ativo. O conhecimento de montar uma carteira de dividendos em dólar vai pagar esse cartão de crédito no futuro. É a única dívida boa que você pode fazer hoje.">
+                            📋 Copiar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Objeção 3 -->
+                <div class="objection-card">
+                    <h3>📄 "Me manda um material no WhatsApp / Quero ler um PDF antes"</h3>
+                    <div class="strategy">
+                        <strong>Estratégia:</strong> Atacar a Solvência da Informação Gratuita
+                    </div>
+                    
+                    <div class="script-card">
+                        <div class="script-id">Script #23</div>
+                        <p>"[Nome], deixa eu ser muito honesto com você. Se PDF, e-book ou vídeo gratuito no YouTube deixasse alguém rico, o Brasil inteiro estava milionário. O que o [Especialista] entrega não é informação — é implementação e acompanhamento."</p>
+                        <button class="copy-btn" data-text="[Nome], deixa eu ser muito honesto com você. Se PDF, e-book ou vídeo gratuito no YouTube deixasse alguém rico, o Brasil inteiro estava milionário. O que o [Especialista] entrega não é informação — é implementação e acompanhamento.">
+                            📋 Copiar
+                        </button>
+                    </div>
+
+                    <div class="script-card">
+                        <div class="script-id">Script #26</div>
+                        <p>"O Google e o YouTube estão lotados de informação de graça. Tem PDF sobrando na internet. E mesmo assim, 99% dos brasileiros não sabe comprar um ETF nos EUA. Você não precisa de mais informação — você precisa de direção."</p>
+                        <button class="copy-btn" data-text="O Google e o YouTube estão lotados de informação de graça. Tem PDF sobrando na internet. E mesmo assim, 99% dos brasileiros não sabe comprar um ETF nos EUA. Você não precisa de mais informação — você precisa de direção.">
+                            📋 Copiar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Objeção 4 -->
+                <div class="objection-card">
+                    <h3>👨‍👩‍👧 "Preciso falar com minha esposa / meu marido"</h3>
+                    <div class="strategy">
+                        <strong>Estratégia:</strong> Reframe de Proteção Familiar & Liderança Financeira
+                    </div>
+                    
+                    <div class="script-card">
+                        <div class="script-id">Script #28</div>
+                        <p>"Se a gente estivesse falando de pegar as economias de uma vida inteira e colocar numa aposta maluca, eu seria o primeiro a te mandar falar com ela. Mas a gente está falando de investir em conhecimento e numa estratégia de proteção pra segurança da sua família. Sua esposa quer segurança. E nada é mais seguro do que ter patrimônio na moeda mais forte do mundo."</p>
+                        <button class="copy-btn" data-text="Se a gente estivesse falando de pegar as economias de uma vida inteira e colocar numa aposta maluca, eu seria o primeiro a te mandar falar com ela. Mas a gente está falando de investir em conhecimento e numa estratégia de proteção pra segurança da sua família. Sua esposa quer segurança. E nada é mais seguro do que ter patrimônio na moeda mais forte do mundo.">
+                            📋 Copiar
+                        </button>
+                    </div>
+
+                    <div class="script-card">
+                        <div class="script-id">Script #32</div>
+                        <p>"Faz o seguinte: a gente entra agora, ainda com o bônus X que eu tenho liberado pra você. Você usa os próximos dias pra mostrar a plataforma e o grupo do [Especialista] pra ela por dentro. Se ela bater o pé e achar que foi uma péssima ideia proteger o dinheiro de vocês em dólar, você usa a garantia de 7 dias e eu te estorno tudo. Zero risco pra você. Fechado?"</p>
+                        <button class="copy-btn" data-text="Faz o seguinte: a gente entra agora, ainda com o bônus X que eu tenho liberado pra você. Você usa os próximos dias pra mostrar a plataforma e o grupo do [Especialista] pra ela por dentro. Se ela bater o pé e achar que foi uma péssima ideia proteger o dinheiro de vocês em dólar, você usa a garantia de 7 dias e eu te estorno tudo. Zero risco pra você. Fechado?">
+                            📋 Copiar
+                        </button>
+                    </div>
+
+                    <div class="advanced-tactic">
+                        <strong>⚡ Tática Avançada:</strong> Apresente a decisão como proteção, não como gasto — 'A gente tomou a decisão de colocar um escudo no nosso patrimônio usando a economia mais forte do mundo.' O cônjuge não está sendo excluído — ele é o beneficiário da proteção.
+                    </div>
+                </div>
+
+                <!-- Objeção 5 -->
+                <div class="objection-card">
+                    <h3>⚠️ "Já caí em golpe / Já perdi dinheiro / Confio em poucos"</h3>
+                    <div class="strategy">
+                        <strong>Estratégia:</strong> Distinção Clara + Transferência de Culpa Justa
+                    </div>
+                    
+                    <div class="script-card">
+                        <div class="script-id">Script #33</div>
+                        <p>"Cara, eu entendo perfeitamente. O Brasil está cheio de guru de palco, vendedor de curso de day trade e promessa de pirâmide. É por isso que você está na defensiva — e você tem toda razão de estar. Mas não culpe o [Especialista] por uma briga que ele não comprou. Não me dê um olho roxo por causa de um golpe que outro cara te deu."</p>
+                        <button class="copy-btn" data-text="Cara, eu entendo perfeitamente. O Brasil está cheio de guru de palco, vendedor de curso de day trade e promessa de pirâmide. É por isso que você está na defensiva — e você tem toda razão de estar. Mas não culpe o [Especialista] por uma briga que ele não comprou. Não me dê um olho roxo por causa de um golpe que outro cara te deu.">
+                            📋 Copiar
+                        </button>
+                    </div>
+
+                    <div class="script-card">
+                        <div class="script-id">Script #36</div>
+                        <p>"Seu medo é completamente justificado. Mas você caiu em golpe porque te prometeram rentabilidade garantida, ganho rápido, day trade mágico. Isso não é Wall Street — isso é cassino. O que o [Especialista] faz é abrir conta em corretoras americanas regulamentadas — Charles Schwab, Interactive Brokers, Avenue — no seu nome, no seu CPF. O dinheiro nunca passa pela nossa mão."</p>
+                        <button class="copy-btn" data-text="Seu medo é completamente justificado. Mas você caiu em golpe porque te prometeram rentabilidade garantida, ganho rápido, day trade mágico. Isso não é Wall Street — isso é cassino. O que o [Especialista] faz é abrir conta em corretoras americanas regulamentadas — Charles Schwab, Interactive Brokers, Avenue — no seu nome, no seu CPF. O dinheiro nunca passa pela nossa mão.">
+                            📋 Copiar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Objeção 6 -->
+                <div class="objection-card">
+                    <h3>📈 "A Selic está alta (+12%), prefiro deixar na Renda Fixa"</h3>
+                    <div class="strategy">
+                        <strong>Estratégia:</strong> Argumento 'Even If' — Concessão Estratégica (Método Toulmin/Atchison)
+                    </div>
+                    
+                    <div class="toulmin-card">
+                        <div class="toulmin-component">
+                            <h5>Claim (Afirmação)</h5>
+                            <p>Ter patrimônio em dólar não é sobre bater a Selic este trimestre — é sobre proteger seu capital no longo prazo.</p>
+                        </div>
+                        <div class="toulmin-component">
+                            <h5>Grounds (Fundamentos)</h5>
+                            <p>O Real perdeu mais de 50% do valor frente ao dólar na última década, e mais de 21% só em 2024. O S&P 500 rendeu ~190% em 10 anos; o Ibovespa dolarizado, ~4%.</p>
+                        </div>
+                        <div class="toulmin-component">
+                            <h5>Warrant (Garantia)</h5>
+                            <p>Mesmo rendendo 12% a.a. no Brasil, se o dólar subir 15-20% no mesmo período, seu poder de compra internacional encolheu. Você assume risco de mercado emergente para ter segurança ilusória em moeda fraca.</p>
+                        </div>
+                    </div>
+
+                    <div class="script-card">
+                        <p>"Olha, eu entendo perfeitamente. A renda fixa pagando 1% ao mês com liquidez diária — isso tem uma atração enorme, não tem? Mas vamos olhar pra matemática real da coisa. Mesmo que você consiga 12% ao ano líquidos no Brasil, se o dólar subir 15 ou 20% no mesmo período — como aconteceu recentemente — o seu poder de compra internacional, na prática, encolheu. Você está assumindo o risco de um mercado emergente pra ter uma falsa sensação de segurança em uma moeda fraca. Ter patrimônio em dólar não é sobre 'bater a Selic' neste trimestre — é sobre proteger o seu capital da inflação estrutural e da desvalorização cambial no longo prazo."</p>
+                        <button class="copy-btn" data-text="Olha, eu entendo perfeitamente. A renda fixa pagando 1% ao mês com liquidez diária — isso tem uma atração enorme, não tem? Mas vamos olhar pra matemática real da coisa. Mesmo que você consiga 12% ao ano líquidos no Brasil, se o dólar subir 15 ou 20% no mesmo período — como aconteceu recentemente — o seu poder de compra internacional, na prática, encolheu. Você está assumindo o risco de um mercado emergente pra ter uma falsa sensação de segurança em uma moeda fraca. Ter patrimônio em dólar não é sobre 'bater a Selic' neste trimestre — é sobre proteger o seu capital da inflação estrutural e da desvalorização cambial no longo prazo.">
+                            📋 Copiar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Parte 3: Fechamentos -->
+        <section id="parte3" aria-labelledby="parte3-title">
+            <div class="section-header" tabindex="0" role="button" aria-expanded="false" aria-controls="parte3-content">
+                <h2 id="parte3-title">✅ PARTE 3 — FECHAMENTOS DE IMPACTO (POWER CLOSES)</h2>
+                <span class="icon" aria-hidden="true">▼</span>
+            </div>
+            <div id="parte3-content" class="section-content">
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">Use os fechamentos APENAS depois de resolver todas as objeções. Nunca tente fechar cedo demais — você perde autoridade.</p>
+
+                <div class="close-card urgency">
+                    <h4>🔥 FECHAMENTO 1 — Escassez / Urgência de Vaga</h4>
+                    <p>"Olha, a gente está fechando esse grupo de acompanhamento com o [Especialista]. Ele atende as pessoas no Zoom, tira dúvidas, pega na mão. Faltam 3 vagas — e uma eu já estou gerando o link de PIX agora. Você está sentado na última cadeira. Vai abrir mão de ter a orientação de um cara desse nível por causa de medo? Qual é o cartão, Visa ou Master?"</p>
+                    <p class="when-to-use"><strong>Quando usar:</strong> Quando há escassez real de vagas ou de bônus. Não blefe — o brasileiro detecta falsidade na hora.</p>
+                    <button class="copy-btn" data-text="Olha, a gente está fechando esse grupo de acompanhamento com o [Especialista]. Ele atende as pessoas no Zoom, tira dúvidas, pega na mão. Faltam 3 vagas — e uma eu já estou gerando o link de PIX agora. Você está sentado na última cadeira. Vai abrir mão de ter a orientação de um cara desse nível por causa de medo? Qual é o cartão, Visa ou Master?">
+                        📋 Copiar
+                    </button>
+                </div>
+
+                <div class="close-card opportunity">
+                    <h4>💰 FECHAMENTO 2 — Custo de Oportunidade</h4>
+                    <p>"Você já concordou que manter 100% do seu dinheiro no Brasil é loucura. Já concordou que a metodologia do [Especialista] faz sentido. A única pergunta que falta responder é: quando você vai parar de ser refém do governo brasileiro e começar a construir riqueza global? Vamos fazer a matrícula agora e já te colocar no grupo."</p>
+                    <p class="when-to-use"><strong>Quando usar:</strong> Após o prospecto ter concordado com os problemas do cenário brasileiro.</p>
+                    <button class="copy-btn" data-text="Você já concordou que manter 100% do seu dinheiro no Brasil é loucura. Já concordou que a metodologia do [Especialista] faz sentido. A única pergunta que falta responder é: quando você vai parar de ser refém do governo brasileiro e começar a construir riqueza global? Vamos fazer a matrícula agora e já te colocar no grupo.">
+                        📋 Copiar
+                    </button>
+                </div>
+
+                <div class="close-card guarantee">
+                    <h4>🛡️ FECHAMENTO 3 — Transferência de Risco (Garantia)</h4>
+                    <p>"Faz o seguinte, [Nome]. Entra agora. Você tem a garantia incondicional de 7 dias, protegida por lei. Consome o conteúdo, entra no grupo de alunos, vê o nível do networking. Se em 7 dias você achar que o [Especialista] não é tudo o que eu te falei, você aperta um botão na plataforma e recebe 100% do seu dinheiro de volta. Sem burocracia, sem letrinhas miúdas. O risco está todo nas nossas costas. Preparado pra dar o próximo passo?"</p>
+                    <p class="when-to-use"><strong>Quando usar:</strong> Para quem tem medo de tomar a decisão errada — especialmente quem já perdeu dinheiro antes.</p>
+                    <button class="copy-btn" data-text="Faz o seguinte, [Nome]. Entra agora. Você tem a garantia incondicional de 7 dias, protegida por lei. Consome o conteúdo, entra no grupo de alunos, vê o nível do networking. Se em 7 dias você achar que o [Especialista] não é tudo o que eu te falei, você aperta um botão na plataforma e recebe 100% do seu dinheiro de volta. Sem burocracia, sem letrinhas miúdas. O risco está todo nas nossas costas. Preparado pra dar o próximo passo?">
+                        📋 Copiar
+                    </button>
+                </div>
+
+                <div class="close-card logic">
+                    <h4>⚖️ FECHAMENTO 4 — Balança (Lógica Comparativa)</h4>
+                    <p>"De um lado da balança, você tem um investimento de apenas X reais por mês e o leve desconforto de aprender algo novo. Do outro lado, você tem a tranquilidade de dolarizar o seu patrimônio, proteger a sua família de qualquer crise política no Brasil e receber renda passiva na moeda mais forte do mundo. Qual lado pesa mais pra você? A decisão é óbvia. Vamos prosseguir com o cartão — qual é o final dele?"</p>
+                    <p class="when-to-use"><strong>Quando usar:</strong> Para prospectos analíticos que querem 'pesar prós e contras'.</p>
+                    <button class="copy-btn" data-text="De um lado da balança, você tem um investimento de apenas X reais por mês e o leve desconforto de aprender algo novo. Do outro lado, você tem a tranquilidade de dolarizar o seu patrimônio, proteger a sua família de qualquer crise política no Brasil e receber renda passiva na moeda mais forte do mundo. Qual lado pesa mais pra você? A decisão é óbvia. Vamos prosseguir com o cartão — qual é o final dele?">
+                        📋 Copiar
+                    </button>
+                </div>
+
+                <div class="close-card vision">
+                    <h4>🔮 FECHAMENTO 5 — Visão de Futuro</h4>
+                    <p>"Imagina comigo: hoje é [data de daqui a 1 ano]. O Brasil passou por mais uma crise política, a inflação subiu, a Bolsa brasileira caiu. Mas você entra no seu aplicativo e vê a sua conta nos EUA gorda, rendendo dividendos em dólar, totalmente imune ao caos aqui. Você vai olhar pra trás e agradecer por ter tomado essa decisão hoje, nessa exata ligação. Me dá esse voto de confiança. Vamos fazer isso acontecer."</p>
+                    <p class="when-to-use"><strong>Quando usar:</strong> Para quem tem visão de longo prazo e se preocupa com o futuro da família.</p>
+                    <button class="copy-btn" data-text="Imagina comigo: hoje é [data de daqui a 1 ano]. O Brasil passou por mais uma crise política, a inflação subiu, a Bolsa brasileira caiu. Mas você entra no seu aplicativo e vê a sua conta nos EUA gorda, rendendo dividendos em dólar, totalmente imune ao caos aqui. Você vai olhar pra trás e agradecer por ter tomado essa decisão hoje, nessa exata ligação. Me dá esse voto de confiança. Vamos fazer isso acontecer.">
+                        📋 Copiar
+                    </button>
+                </div>
+
+                <div class="close-card assumption">
+                    <h4>🎯 FECHAMENTO 6 — Assunção Direta</h4>
+                    <p>"Perfeito, [Nome]. Como você já viu que a estratégia do [Especialista] é exatamente o que faltava pra organizar os seus investimentos, eu vou precisar só do seu melhor e-mail pra liberar o acesso agora. Você usa Gmail ou Hotmail? Ótimo — e pra o cartão, você vai querer usar um só ou prefere dividir em dois pra não comprometer o limite do mês?"</p>
+                    <p class="when-to-use"><strong>Quando usar:</strong> Após eliminar todas as objeções e perceber que o prospecto já concordou logicamente com a compra.</p>
+                    <button class="copy-btn" data-text="Perfeito, [Nome]. Como você já viu que a estratégia do [Especialista] é exatamente o que faltava pra organizar os seus investimentos, eu vou precisar só do seu melhor e-mail pra liberar o acesso agora. Você usa Gmail ou Hotmail? Ótimo — e pra o cartão, você vai querer usar um só ou prefere dividir em dois pra não comprometer o limite do mês?">
+                        📋 Copiar
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Parte 4: Framework Toulmin -->
+        <section id="parte4" aria-labelledby="parte4-title">
+            <div class="section-header" tabindex="0" role="button" aria-expanded="false" aria-controls="parte4-content">
+                <h2 id="parte4-title">🧠 PARTE 4 — FRAMEWORK ARGUMENTATIVO AVANÇADO</h2>
+                <span class="icon" aria-hidden="true">▼</span>
+            </div>
+            <div id="parte4-content" class="section-content">
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">Para prospectos sofisticados — empresários, executivos, investidores experientes — use argumentação baseada em dados empíricos.</p>
+
+                <div class="toulmin-card">
+                    <h3 style="margin-bottom: 1rem; color: var(--primary-color);">4.1 Abertura com Dados Empíricos</h3>
+                    <div class="toulmin-component">
+                        <h5>CLAIM</h5>
+                        <p>A questão central não é se você deve investir nos EUA, mas se você pode continuar com 100% do patrimônio exposto ao risco cambial.</p>
+                    </div>
+                    <div class="toulmin-component">
+                        <h5>GROUNDS</h5>
+                        <p>S&P 500: ~190% em 10 anos. Ibovespa dolarizado: ~4% em 10 anos. Real: -54% vs dólar em 10 anos. BRL: -21% em 2024.</p>
+                    </div>
+                    <div class="toulmin-component">
+                        <h5>WARRANT</h5>
+                        <p>O [Especialista] traduz a complexidade do mercado americano em execução simples e segura, garantindo que o seu trabalho de anos não perca o poder de compra global.</p>
+                    </div>
+                </div>
+
+                <div class="toulmin-card">
+                    <h3 style="margin-bottom: 1rem; color: var(--primary-color);">4.2 Fechamento Racional (Conclusão Lógica)</h3>
+                    <p>"A gente baseou a nossa conversa inteira na lógica: você viu os dados da inflação brasileira, a desvalorização cambial histórica, e concordamos que não dá pra ficar 100% refém do Risco Brasil. Se você concorda com esses três pontos, a única conclusão racional é que você precisa de dolarização estruturada agora — e o método do [Especialista] é o veículo mais seguro pra isso. Pra eu liberar a equipe de onboarding, o que fica melhor pro seu fluxo de caixa: fazer no cartão em 12 vezes pra diluir o impacto, ou à vista com o desconto?"</p>
+                    <button class="copy-btn" data-text="A gente baseou a nossa conversa inteira na lógica: você viu os dados da inflação brasileira, a desvalorização cambial histórica, e concordamos que não dá pra ficar 100% refém do Risco Brasil. Se você concorda com esses três pontos, a única conclusão racional é que você precisa de dolarização estruturada agora — e o método do [Especialista] é o veículo mais seguro pra isso. Pra eu liberar a equipe de onboarding, o que fica melhor pro seu fluxo de caixa: fazer no cartão em 12 vezes pra diluir o impacto, ou à vista com o desconto?">
+                        📋 Copiar
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Parte 5: Referência Rápida -->
+        <section id="parte5" aria-labelledby="parte5-title">
+            <div class="section-header" tabindex="0" role="button" aria-expanded="false" aria-controls="parte5-content">
+                <h2 id="parte5-title">📋 PARTE 5 — REFERÊNCIA RÁPIDA EM CAMPO</h2>
+                <span class="icon" aria-hidden="true">▼</span>
+            </div>
+            <div id="parte5-content" class="section-content">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Etapa</th>
+                                <th scope="col">Ação</th>
+                                <th scope="col">Seção</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1. Abertura</td>
+                                <td>Posicionamento — você é selecionador, não vendedor</td>
+                                <td>Parte 1</td>
+                            </tr>
+                            <tr>
+                                <td>2. Diagnóstico</td>
+                                <td>Descobrir cenário atual: patrimônio, dores, objetivos</td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td>3. Apresentação</td>
+                                <td>Mostrar o método com Claim + Grounds + Warrant</td>
+                                <td>Parte 4</td>
+                            </tr>
+                            <tr>
+                                <td>4. Objeções</td>
+                                <td>Resolver com as quebras específicas para cada objeção</td>
+                                <td>Parte 2</td>
+                            </tr>
+                            <tr>
+                                <td>5. Fechamento</td>
+                                <td>Escolher o power close certo e assumir a venda</td>
+                                <td>Parte 3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 style="margin: 1.5rem 0 1rem; color: var(--primary-color);">5.2 Mapa de Objeções → Resposta</h3>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Objeção</th>
+                                <th scope="col">Estratégia</th>
+                                <th scope="col">Close Indicado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Vou pensar / Preciso refletir</td>
+                                <td>Custo de oportunidade + Reframe temporal</td>
+                                <td>Close 2 ou Close 5</td>
+                            </tr>
+                            <tr>
+                                <td>Não tenho limite / Tá apertado</td>
+                                <td>Reframe de prioridade + Engenharia financeira</td>
+                                <td>Close 4 (Balança)</td>
+                            </tr>
+                            <tr>
+                                <td>Me manda um PDF / WhatsApp</td>
+                                <td>Atacar solvência da informação gratuita</td>
+                                <td>Close 6 (Assunção)</td>
+                            </tr>
+                            <tr>
+                                <td>Preciso falar com cônjuge</td>
+                                <td>Reframe proteção familiar + Liderança</td>
+                                <td>Close 3 (Garantia)</td>
+                            </tr>
+                            <tr>
+                                <td>Já caí em golpe</td>
+                                <td>Distinção + Transferência de culpa justa</td>
+                                <td>Close 3 (Garantia)</td>
+                            </tr>
+                            <tr>
+                                <td>Prefiro a Selic / Renda Fixa</td>
+                                <td>Argumento 'Even If' + dados empíricos</td>
+                                <td>Close 4 (Balança)</td>
+                            </tr>
+                            <tr>
+                                <td>Posso aprender sozinho</td>
+                                <td>Refutação linha a linha — solvência</td>
+                                <td>Close 6 (Assunção)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="quick-ref">
+                    <h3>⚡ LEMBRETE FINAL</h3>
+                    <p>Postura de autoridade, nunca de desespero. Você seleciona — não implora. O prospecto que sente que está sendo avaliado tende a querer provar que merece entrar.</p>
+                    <div class="final-note">
+                        🎯 Lembre-se sempre: postura de autoridade, nunca de desespero. Você seleciona — não implora. O prospecto que sente que está sendo avaliado tende a querer provar que merece entrar.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="toast" id="toast" role="alert" aria-live="polite">✅ Texto copiado para a área de transferência!</div>
+
+    <footer style="text-align: center; padding: 2rem 1rem; color: var(--text-secondary); font-size: 0.875rem;">
+        <p>📚 Baseado nas melhores práticas de usabilidade mobile e design de documentação</p>
+        <p>© 2025 — Material Confidencial para Uso Interno</p>
+    </footer>
+
+    <script>
+        // Progressive Disclosure - Section Expansion
+        document.querySelectorAll('.section-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const section = this.parentElement;
+                const isExpanded = section.classList.contains('expanded');
+                
+                // Toggle current section
+                section.classList.toggle('expanded');
+                this.setAttribute('aria-expanded', !isExpanded);
+                
+                // Update navigation
+                updateNavigation();
+            });
+
+            // Keyboard accessibility
+            header.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+        });
+
+        // Expand/Collapse All
+        document.getElementById('expand-all').addEventListener('click', function() {
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('expanded');
+                section.querySelector('.section-header').setAttribute('aria-expanded', 'true');
+            });
+        });
+
+        document.getElementById('collapse-all').addEventListener('click', function() {
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('expanded');
+                section.querySelector('.section-header').setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Copy to Clipboard with Visual Feedback
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', async function() {
+                const text = this.getAttribute('data-text');
+                
+                try {
+                    await navigator.clipboard.writeText(text);
+                    showToast('✅ Texto copiado para a área de transferência!');
+                    
+                    // Visual feedback on button
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '✅ Copiado!';
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                    }, 2000);
+                } catch (err) {
+                    showToast('❌ Erro ao copiar texto');
+                }
+            });
+        });
+
+        // Toast Notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Search Functionality
+        document.getElementById('search-input').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const content = section.textContent.toLowerCase();
+                const header = section.querySelector('.section-header h2');
+                
+                if (searchTerm === '' || content.includes(searchTerm)) {
+                    section.style.display = 'block';
+                    // Auto-expand matching sections
+                    if (searchTerm !== '') {
+                        section.classList.add('expanded');
+                        section.querySelector('.section-header').setAttribute('aria-expanded', 'true');
+                    }
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
+
+        // Navigation Update
+        function updateNavigation() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            sections.forEach((section, index) => {
+                if (section.classList.contains('expanded')) {
+                    navLinks.forEach(link => link.removeAttribute('aria-current'));
+                    if (navLinks[index]) {
+                        navLinks[index].setAttribute('aria-current', 'page');
+                    }
+                }
+            });
+        }
+
+        // Smooth Scroll for Navigation
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    // Expand the target section
+                    targetSection.classList.add('expanded');
+                    targetSection.querySelector('.section-header').setAttribute('aria-expanded', 'true');
+                    
+                    // Smooth scroll
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Update navigation
+                    updateNavigation();
+                }
+            });
+        });
+
+        // Initialize first section as expanded
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSection = document.querySelector('section');
+            if (firstSection) {
+                firstSection.classList.add('expanded');
+                firstSection.querySelector('.section-header').setAttribute('aria-expanded', 'true');
+            }
+        });
+
+        // Reduce Motion Preference
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.style.setProperty('--transition-speed', '0s');
+        }
+    </script>
+</body>
+  </html>
